@@ -24,13 +24,11 @@ public class WaitUtils {
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    @Step("Ожидание 5 секунд")
-    public static void waitForFiveSeconds() {
-        try {
-            Thread.sleep(5000L);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException("Пауза была прервана", e);
-        }
+    @Step("Ожидание загрузки страницы")
+    public static void waitForPageLoad(WebDriver driver) {
+        new WebDriverWait(driver, Duration.ofSeconds(DEFAULT_TIMEOUT_SECONDS))
+                .until(webDriver ->
+                        ((org.openqa.selenium.JavascriptExecutor) webDriver)
+                                .executeScript("return document.readyState").equals("complete"));
     }
 }

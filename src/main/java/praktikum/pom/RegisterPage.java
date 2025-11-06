@@ -51,7 +51,7 @@ public class RegisterPage {
         enterEmail(email);
         enterPassword(password);
         clickRegisterButton();
-        WaitUtils.waitForFiveSeconds();
+        WaitUtils.waitForPageLoad(driver);
     }
 
     @Step("Проверка отображения ошибки: 'Некорректный пароль'")
